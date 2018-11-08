@@ -52,7 +52,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -134,9 +137,67 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Administrador.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cartao.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Categoria.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cliente.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_wink.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_wink.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_wink.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB_wink.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_wink.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Endereco.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Fornecedor.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Oferta.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Produto.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Produto_oferta.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Produto_Venda.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Relatorio.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subcategoria.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Venda.cs">
+      <DependentUpon>DB_wink.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DB_wink.mdf" />
+    <Content Include="App_Data\DB_wink_log.ldf">
+      <DependentUpon>DB_wink.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -193,7 +254,25 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\DB_wink.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB_wink.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DB_wink.edmx.diagram">
+      <DependentUpon>DB_wink.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Models\DB_wink.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_wink.edmx</DependentUpon>
+      <LastGenOutput>DB_wink.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB_wink.edmx.sql" />
+    <Content Include="Models\DB_wink.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_wink.edmx</DependentUpon>
+      <LastGenOutput>DB_wink.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -236,12 +315,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
