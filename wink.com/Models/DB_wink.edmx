@@ -139,7 +139,6 @@
     <Property Name="valor" Type="decimal" Nullable="false" />
     <Property Name="qtde_estoque" Type="int" Nullable="false" />
     <Property Name="desconto_promocao" Type="float" Nullable="false" />
-    <Property Name="foto" Type="geography" Nullable="false" SRID="4326" />
     <Property Name="promocao" Type="bit" Nullable="false" />
     <Property Name="Subcategoria_id" Type="int" Nullable="false" />
     <Property Name="Fornecedor_id" Type="int" Nullable="false" />
@@ -478,7 +477,6 @@
           <Property Type="Decimal" Name="valor" Nullable="false" />
           <Property Type="Int32" Name="qtde_estoque" Nullable="false" />
           <Property Type="Double" Name="desconto_promocao" Nullable="false" />
-          <Property Type="GeographyMultiPoint" Name="foto" Nullable="false" />
           <Property Type="Boolean" Name="promocao" Nullable="false" />
           <NavigationProperty Name="Subcategoria" Relationship="DB_winkModel.SubcategoriaProduto" FromRole="Produto" ToRole="Subcategoria" />
           <NavigationProperty Name="Fornecedor" Relationship="DB_winkModel.FornecedorProduto" FromRole="Produto" ToRole="Fornecedor" />
@@ -651,7 +649,6 @@
           <ScalarProperty Name="valor" ColumnName="valor" />
           <ScalarProperty Name="qtde_estoque" ColumnName="qtde_estoque" />
           <ScalarProperty Name="desconto_promocao" ColumnName="desconto_promocao" />
-          <ScalarProperty Name="foto" ColumnName="foto" />
           <ScalarProperty Name="promocao" ColumnName="promocao" />
         </MappingFragment>
       </EntityTypeMapping>

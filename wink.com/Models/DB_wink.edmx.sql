@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 11/07/2018 21:03:18
--- Generated from EDMX file: C:\Users\prog\Documents\projetos\api@wink.com\wink.com\Models\DB_wink.edmx
+-- Date Created: 11/12/2018 23:07:27
+-- Generated from EDMX file: C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\Models\DB_wink.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,80 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ClienteEndereco]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EnderecoDefinir] DROP CONSTRAINT [FK_ClienteEndereco];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClienteCartao]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CartaoDefinir] DROP CONSTRAINT [FK_ClienteCartao];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClienteVenda]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[VendaDefinir] DROP CONSTRAINT [FK_ClienteVenda];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CategoriaSubcategoria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SubcategoriaDefinir] DROP CONSTRAINT [FK_CategoriaSubcategoria];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SubcategoriaProduto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProdutoDefinir] DROP CONSTRAINT [FK_SubcategoriaProduto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_FornecedorProduto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProdutoDefinir] DROP CONSTRAINT [FK_FornecedorProduto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProdutoProduto_Venda]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Produto_VendaDefinir] DROP CONSTRAINT [FK_ProdutoProduto_Venda];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VendaProduto_Venda]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Produto_VendaDefinir] DROP CONSTRAINT [FK_VendaProduto_Venda];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProdutoEntidade1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Produto_ofertaDefinir] DROP CONSTRAINT [FK_ProdutoEntidade1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OfertaEntidade1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Produto_ofertaDefinir] DROP CONSTRAINT [FK_OfertaEntidade1];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[ClienteDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ClienteDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[EnderecoDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EnderecoDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[CartaoDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CartaoDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[VendaDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[VendaDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[CategoriaDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CategoriaDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[SubcategoriaDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SubcategoriaDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[ProdutoDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProdutoDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[FornecedorDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FornecedorDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[Produto_VendaDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Produto_VendaDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[OfertaDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[OfertaDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[Produto_ofertaDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Produto_ofertaDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[AdministradorDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AdministradorDefinir];
+GO
+IF OBJECT_ID(N'[dbo].[RelatorioDefinir]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RelatorioDefinir];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -104,7 +173,6 @@ CREATE TABLE [dbo].[ProdutoDefinir] (
     [valor] decimal(18,0)  NOT NULL,
     [qtde_estoque] int  NOT NULL,
     [desconto_promocao] float  NOT NULL,
-    [foto] geography  NOT NULL,
     [promocao] bit  NOT NULL,
     [Subcategoria_id] int  NOT NULL,
     [Fornecedor_id] int  NOT NULL

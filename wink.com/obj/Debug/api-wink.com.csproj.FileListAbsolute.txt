@@ -2,8 +2,11 @@ C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\api-wink.com.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\api-wink.com.pdb
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\Antlr3.Runtime.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\EntityFramework.dll
+C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\EntityFramework.SqlServer.dll
+C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\jose-jwt.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\Newtonsoft.Json.dll
+C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\Ninject.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Net.Http.Formatting.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.Helpers.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.Http.dll
@@ -17,6 +20,8 @@ C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.WebPages.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.WebPages.Razor.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\WebGrease.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\EntityFramework.xml
+C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\EntityFramework.SqlServer.xml
+C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\Ninject.xml
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\Newtonsoft.Json.xml
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Net.Http.Formatting.xml
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.Helpers.xml
@@ -27,6 +32,5 @@ C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.Razor.xml
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.WebPages.xml
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.WebPages.Deployment.xml
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\bin\System.Web.WebPages.Razor.xml
-C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\obj\Debug\api-wink.com.csprojResolveAssemblyReference.cache
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\obj\Debug\api-wink.com.dll
 C:\Users\bruno\projetos\dotNET\api-wink.com\wink.com\obj\Debug\api-wink.com.pdb
