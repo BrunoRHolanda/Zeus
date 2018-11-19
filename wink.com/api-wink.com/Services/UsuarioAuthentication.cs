@@ -12,7 +12,8 @@ namespace api_wink.com.Services
     {
         public static Usuario Login(string email, string senha)
         {
-            IUsuarioRepository usuarioRepository = new UsuarioRepository();
+            IUsuarioRepository usuarioRepository = 
+                new UsuarioRepository(new Utils.Helpers.Database());
 
             Usuario usuario = 
                 usuarioRepository.Query(u => u.email.Equals(email) &&

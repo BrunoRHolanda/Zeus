@@ -14,12 +14,15 @@ namespace api_wink.com.Controllers.Cliente
     public class EnderecoController : ApiController
     {
         /**
-         * Instância para o repositório de enderecos
+         * Instância para o repositório de usuários
          * 
          */
-        private readonly IEnderecoRepository enderecoRepository;
+        private readonly Utils.Helpers.IRepository _repository;
 
-        private readonly IUsuarioRepository usuarioRepository;
+        private Utils.Helpers.IRepository Repository
+        {
+            get { return this._repository; }
+        }
 
         /**
          * Auto Injeta uma instância para o repositório de enderecos
@@ -27,11 +30,9 @@ namespace api_wink.com.Controllers.Cliente
          * @param IEnderecoRepository enderecoRepository
          * 
          */
-        public EnderecoController(IEnderecoRepository enderecoRepository, IUsuarioRepository usuarioRepository)
+        public EnderecoController(Utils.Helpers.IRepository repository)
         {
-            this.enderecoRepository = enderecoRepository;
-
-            this.usuarioRepository = usuarioRepository;
+            this._repository = repository;
         }
 
         [HttpGet]
@@ -40,9 +41,9 @@ namespace api_wink.com.Controllers.Cliente
         {
             string email = ControllerContext.RequestContext.Principal.Identity.Name;
 
-            Usuario client = this.usuarioRepository.GetClienteByEmail(email);
+            Usuario client = Repository.Usuario.GetClienteByEmail(email);
 
-            return this.enderecoRepository.GetAllEnderecoByClient(client);
+            return Repository.Endereco.GetAllEnderecoByClient(client);
         }
 
         [HttpPost]
@@ -51,11 +52,11 @@ namespace api_wink.com.Controllers.Cliente
         {
             string email = ControllerContext.RequestContext.Principal.Identity.Name;
 
-            Usuario client = this.usuarioRepository.GetClienteByEmail(email);
+            Usuario client = Repository.Usuario.GetClienteByEmail(email);
 
             endereco.Usuario = client;
 
-            this.enderecoRepository.Save(endereco);
+            Repository.Endereco.Save(endereco);
 
             return endereco;
         }

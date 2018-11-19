@@ -316,6 +316,8 @@
     <Compile Include="Services\UsuarioAuthentication.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Helpers\Database.cs" />
+    <Compile Include="Utils\Helpers\IRepository.cs" />
+    <Compile Include="Utils\Helpers\Repository.cs" />
     <Compile Include="Utils\Helpers\UnityResolver.cs" />
     <Compile Include="Utils\Providers\UsuarioAuthorizeationProvider.cs" />
   </ItemGroup>

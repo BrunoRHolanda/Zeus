@@ -14,7 +14,7 @@ namespace api_wink.com.Controllers
      * Mantem os dados do usuário
      * 
      */
-     [RoutePrefix("api/client")]
+    [RoutePrefix("api/client")]
     public class ClienteController : ApiController
     {
 
@@ -22,7 +22,12 @@ namespace api_wink.com.Controllers
          * Instância para o repositório de usuários
          * 
          */
-        private readonly IUsuarioRepository usuarioRepository;
+        private readonly Utils.Helpers.IRepository _repository;
+
+        private Utils.Helpers.IRepository Repository
+        {
+            get { return this._repository; }
+        }
 
         /**
          * Auto Injeta uma instância para o repositório de usuários
@@ -30,9 +35,9 @@ namespace api_wink.com.Controllers
          * @param IUsuarioRepository usuarioRepository
          * 
          */
-        public ClienteController(IUsuarioRepository usuarioRepository)
+        public ClienteController(Utils.Helpers.IRepository repository)
         {
-            this.usuarioRepository = usuarioRepository;
+            this._repository = repository;
         }
 
         [Authorize(Roles = "Cliente")]
@@ -42,7 +47,7 @@ namespace api_wink.com.Controllers
         {
             string email = ControllerContext.RequestContext.Principal.Identity.Name;
 
-            return this.usuarioRepository.GetClienteByEmail(email);
+            return Repository.Usuario.GetClienteByEmail(email);
         }
 
         // POST: api/client/profiles/add
@@ -55,7 +60,7 @@ namespace api_wink.com.Controllers
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
             }
 
-            this.usuarioRepository.Save(novo);
+            Repository.Usuario.Save(novo);
 
             return novo;
         }
@@ -71,7 +76,7 @@ namespace api_wink.com.Controllers
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
             }
 
-            this.usuarioRepository.Save(usuario);
+            Repository.Usuario.Save(usuario);
 
             return usuario;
         }
@@ -84,9 +89,9 @@ namespace api_wink.com.Controllers
         {
             string email = ControllerContext.RequestContext.Principal.Identity.Name;
 
-            Usuario u = this.usuarioRepository.GetClienteByEmail(email);
+            Usuario u = Repository.Usuario.GetClienteByEmail(email);
 
-            this.usuarioRepository.Delete(u);
+            Repository.Usuario.Delete(u);
 
             return u;
         }

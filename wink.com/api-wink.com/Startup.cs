@@ -1,14 +1,14 @@
-﻿using api_wink.com.Repository;
-using api_wink.com.Utils.Helpers;
-using api_wink.com.Utils.Providers;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using Owin;
 using System;
 using System.Web.Http;
 using Unity;
 using Unity.Lifetime;
+
+using api_wink.com.Utils.Providers;
 
 [assembly: OwinStartup(typeof(api_wink.com.Startup))]
 
@@ -34,16 +34,19 @@ namespace api_wink.com
 
             // Mapeamento de dependências
             container.RegisterType
-                <IUsuarioRepository, UsuarioRepository>(new HierarchicalLifetimeManager());
+                <Utils.Helpers.IRepository, Utils.Helpers.Repository>(
+                    new HierarchicalLifetimeManager());
 
-            container.RegisterType
-                <IEnderecoRepository, EnderecoRepository>(new HierarchicalLifetimeManager());
 
             // configuração da instância do resolver
-            config.DependencyResolver = new UnityResolver(container);
+            config.DependencyResolver = new Utils.Helpers.UnityResolver(container);
 
             // ativando cors
             app.UseCors(CorsOptions.AllowAll);
+            
+            // configurando json formater
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
+                = ReferenceLoopHandling.Ignore;
 
             // ativando a geração do token
             AtivarGeracaoTokenAcesso(app);

@@ -34,9 +34,9 @@ namespace api_wink.com.Repository
          * Cria uma instância da base de dados.
          * 
          * */
-        public UsuarioRepository()
+        public UsuarioRepository(Utils.Helpers.Database context)
         {
-            this._context = Utils.Helpers.Database.GetInstance();
+            this._context = context;
         }
 
         /**

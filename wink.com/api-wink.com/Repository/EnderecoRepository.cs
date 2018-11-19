@@ -28,9 +28,9 @@ namespace api_wink.com.Repository
          * Cria uma instância da base de dados.
          * 
          * */
-        public EnderecoRepository()
+        public EnderecoRepository(Utils.Helpers.Database context)
         {
-            this._context = Utils.Helpers.Database.GetInstance();
+            this._context = context;
         }
         public Endereco TrocarEnderecoEntrega(int id)
         {
@@ -101,7 +101,7 @@ namespace api_wink.com.Repository
 
         public IEnumerable<Endereco> GetAllEnderecoByClient(Usuario client)
         {
-            return this.Query(e => e.Usuario.Equals(client)).ToArray();
+            return this.Query(e => e.Usuario.Id == client.Id).ToArray();
         }
     }
 }

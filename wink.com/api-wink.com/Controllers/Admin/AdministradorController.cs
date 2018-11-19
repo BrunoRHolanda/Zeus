@@ -22,7 +22,12 @@ namespace api_wink.com.Controllers.Admin
          * Instância para o repositório de usuários
          * 
          */
-        private readonly IUsuarioRepository usuarioRepository;
+        private readonly Utils.Helpers.IRepository _repository;
+
+        private Utils.Helpers.IRepository Repository
+        {
+            get { return this._repository; }
+        }
 
         /**
          * Auto Injeta uma instância para o repositório de usuários
@@ -30,9 +35,9 @@ namespace api_wink.com.Controllers.Admin
          * @param IUsuarioRepository usuarioRepository
          * 
          */
-        public AdministradorController(IUsuarioRepository usuarioRepository)
+        public AdministradorController(Utils.Helpers.IRepository repository)
         {
-            this.usuarioRepository = usuarioRepository;
+            this._repository = repository;
         }
 
         // GET: api/admin/profiles/admins/all
@@ -40,7 +45,7 @@ namespace api_wink.com.Controllers.Admin
         [HttpGet]
         public IEnumerable<Usuario> GetAllAdminsProfiles()
         {
-            return this.usuarioRepository.GetAdministradores();
+            return Repository.Usuario.GetAdministradores();
         }
 
         // GET: api/admin/profiles/admins/5
@@ -48,7 +53,7 @@ namespace api_wink.com.Controllers.Admin
         [HttpGet]
         public Usuario GetAdminProfile(int id)
         {
-            Usuario administrador = this.usuarioRepository.GetAdmin(id);
+            Usuario administrador = Repository.Usuario.GetAdmin(id);
 
             if (administrador == null)
             {
@@ -68,7 +73,7 @@ namespace api_wink.com.Controllers.Admin
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
             }
 
-            this.usuarioRepository.Save(novo);
+            Repository.Usuario.Save(novo);
 
             return novo;
         }
