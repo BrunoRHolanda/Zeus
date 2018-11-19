@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DM_Wink" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="DM_WinkContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Enderecos" EntityType="DM_Wink.Endereco" />
+    <EntitySet Name="Cartaoes" EntityType="DM_Wink.Cartao" />
+    <EntitySet Name="Vendas" EntityType="DM_Wink.Venda" />
+    <EntitySet Name="Categorias" EntityType="DM_Wink.Categoria" />
+    <EntitySet Name="Subcategorias" EntityType="DM_Wink.Subcategoria" />
+    <AssociationSet Name="Categoriasubcategoria" Association="DM_Wink.Categoriasubcategoria">
+      <End Role="Categoria" EntitySet="Categorias" />
+      <End Role="subcategoria" EntitySet="Subcategorias" />
+    </AssociationSet>
+    <EntitySet Name="Fornecedores" EntityType="DM_Wink.Fornecedor" />
+    <EntitySet Name="Produtos" EntityType="DM_Wink.Produto" />
+    <AssociationSet Name="FornecedorProduto" Association="DM_Wink.FornecedorProduto">
+      <End Role="Fornecedor" EntitySet="Fornecedores" />
+      <End Role="Produto" EntitySet="Produtos" />
+    </AssociationSet>
+    <AssociationSet Name="SubcategoriaProduto" Association="DM_Wink.SubcategoriaProduto">
+      <End Role="Subcategoria" EntitySet="Subcategorias" />
+      <End Role="Produto" EntitySet="Produtos" />
+    </AssociationSet>
+    <EntitySet Name="Ofertas" EntityType="DM_Wink.Oferta" />
+    <EntitySet Name="ProdutosOfertas" EntityType="DM_Wink.ProdutoOferta" />
+    <AssociationSet Name="ProdutoProdutoOferta" Association="DM_Wink.ProdutoProdutoOferta">
+      <End Role="Produto" EntitySet="Produtos" />
+      <End Role="ProdutoOferta" EntitySet="ProdutosOfertas" />
+    </AssociationSet>
+    <AssociationSet Name="OfertaProdutoOferta" Association="DM_Wink.OfertaProdutoOferta">
+      <End Role="Oferta" EntitySet="Ofertas" />
+      <End Role="ProdutoOferta" EntitySet="ProdutosOfertas" />
+    </AssociationSet>
+    <EntitySet Name="Usuarios" EntityType="DM_Wink.Usuario" />
+    <AssociationSet Name="UsuarioEndereco" Association="DM_Wink.UsuarioEndereco">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Endereco" EntitySet="Enderecos" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioCartao" Association="DM_Wink.UsuarioCartao">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Cartao" EntitySet="Cartaoes" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioVenda" Association="DM_Wink.UsuarioVenda">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Venda" EntitySet="Vendas" />
+    </AssociationSet>
+    <EntitySet Name="ProdutosVendas" EntityType="DM_Wink.ProdutoVenda" />
+    <AssociationSet Name="VendaProdutoVenda" Association="DM_Wink.VendaProdutoVenda">
+      <End Role="Venda" EntitySet="Vendas" />
+      <End Role="ProdutoVenda" EntitySet="ProdutosVendas" />
+    </AssociationSet>
+    <AssociationSet Name="ProdutoProdutoVenda" Association="DM_Wink.ProdutoProdutoVenda">
+      <End Role="Produto" EntitySet="Produtos" />
+      <End Role="ProdutoVenda" EntitySet="ProdutosVendas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Endereco">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cep" Type="String" Nullable="false" />
+    <Property Name="uf" Type="String" Nullable="false" />
+    <Property Name="cidade" Type="String" Nullable="false" />
+    <Property Name="bairro" Type="String" Nullable="false" />
+    <Property Name="rua" Type="String" Nullable="false" />
+    <Property Name="numero" Type="Int32" Nullable="false" />
+    <Property Name="complemento" Type="String" Nullable="false" />
+    <Property Name="entrega" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="DM_Wink.UsuarioEndereco" FromRole="Endereco" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Cartao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numero" Type="String" Nullable="false" />
+    <Property Name="cvv" Type="Int32" Nullable="false" />
+    <Property Name="mesExp" Type="Int32" Nullable="false" />
+    <Property Name="anoExp" Type="Int32" Nullable="false" />
+    <Property Name="selecionado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="DM_Wink.UsuarioCartao" FromRole="Cartao" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Venda">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dtVenda" Type="DateTime" Nullable="false" />
+    <Property Name="valorVenda" Type="Double" Nullable="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="codTransacao" Type="String" Nullable="false" />
+    <Property Name="linkPgto" Type="String" Nullable="false" />
+    <Property Name="formaPgto" Type="Int32" Nullable="false" />
+    <Property Name="hashVenda" Type="String" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="DM_Wink.UsuarioVenda" FromRole="Venda" ToRole="Usuario" />
+    <NavigationProperty Name="ProdutoVenda" Relationship="DM_Wink.VendaProdutoVenda" FromRole="Venda" ToRole="ProdutoVenda" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" />
+    <NavigationProperty Name="subcategoria" Relationship="DM_Wink.Categoriasubcategoria" FromRole="Categoria" ToRole="subcategoria" />
+  </EntityType>
+  <EntityType Name="Subcategoria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" />
+    <NavigationProperty Name="Categoria" Relationship="DM_Wink.Categoriasubcategoria" FromRole="subcategoria" ToRole="Categoria" />
+    <NavigationProperty Name="Produto" Relationship="DM_Wink.SubcategoriaProduto" FromRole="Subcategoria" ToRole="Produto" />
+  </EntityType>
+  <Association Name="Categoriasubcategoria">
+    <End Type="DM_Wink.Categoria" Role="Categoria" Multiplicity="1" />
+    <End Type="DM_Wink.Subcategoria" Role="subcategoria" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Fornecedor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" />
+    <Property Name="cnpj" Type="String" Nullable="false" />
+    <NavigationProperty Name="Produto" Relationship="DM_Wink.FornecedorProduto" FromRole="Fornecedor" ToRole="Produto" />
+  </EntityType>
+  <EntityType Name="Produto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" />
+    <Property Name="valor" Type="Int32" Nullable="false" />
+    <Property Name="qtdEstoque" Type="Int32" Nullable="false" />
+    <Property Name="descontoPromocao" Type="Double" Nullable="false" />
+    <Property Name="foto" Type="String" Nullable="false" />
+    <Property Name="promocao" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Fornecedor" Relationship="DM_Wink.FornecedorProduto" FromRole="Produto" ToRole="Fornecedor" />
+    <NavigationProperty Name="Subcategoria" Relationship="DM_Wink.SubcategoriaProduto" FromRole="Produto" ToRole="Subcategoria" />
+    <NavigationProperty Name="ProdutoOferta" Relationship="DM_Wink.ProdutoProdutoOferta" FromRole="Produto" ToRole="ProdutoOferta" />
+    <NavigationProperty Name="ProdutoVenda" Relationship="DM_Wink.ProdutoProdutoVenda" FromRole="Produto" ToRole="ProdutoVenda" />
+  </EntityType>
+  <Association Name="FornecedorProduto">
+    <End Type="DM_Wink.Fornecedor" Role="Fornecedor" Multiplicity="1" />
+    <End Type="DM_Wink.Produto" Role="Produto" Multiplicity="*" />
+  </Association>
+  <Association Name="SubcategoriaProduto">
+    <End Type="DM_Wink.Subcategoria" Role="Subcategoria" Multiplicity="1" />
+    <End Type="DM_Wink.Produto" Role="Produto" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Oferta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" Nullable="false" />
+    <Property Name="validade" Type="DateTime" Nullable="false" />
+    <Property Name="expirado" Type="Boolean" Nullable="false" />
+    <Property Name="valor" Type="Double" Nullable="false" />
+    <NavigationProperty Name="ProdutoOferta" Relationship="DM_Wink.OfertaProdutoOferta" FromRole="Oferta" ToRole="ProdutoOferta" />
+  </EntityType>
+  <EntityType Name="ProdutoOferta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="qtd" Type="String" Nullable="false" />
+    <NavigationProperty Name="Produto" Relationship="DM_Wink.ProdutoProdutoOferta" FromRole="ProdutoOferta" ToRole="Produto" />
+    <NavigationProperty Name="Oferta" Relationship="DM_Wink.OfertaProdutoOferta" FromRole="ProdutoOferta" ToRole="Oferta" />
+  </EntityType>
+  <Association Name="ProdutoProdutoOferta">
+    <End Type="DM_Wink.Produto" Role="Produto" Multiplicity="1" />
+    <End Type="DM_Wink.ProdutoOferta" Role="ProdutoOferta" Multiplicity="*" />
+  </Association>
+  <Association Name="OfertaProdutoOferta">
+    <End Type="DM_Wink.Oferta" Role="Oferta" Multiplicity="1" />
+    <End Type="DM_Wink.ProdutoOferta" Role="ProdutoOferta" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" />
+    <Property Name="senha" Type="String" Nullable="false" />
+    <Property Name="dtNasc" Type="DateTime" Nullable="false" />
+    <Property Name="sexo" Type="Boolean" Nullable="false" />
+    <Property Name="cpf" Type="String" Nullable="false" />
+    <Property Name="tel" Type="String" Nullable="false" />
+    <NavigationProperty Name="Endereco" Relationship="DM_Wink.UsuarioEndereco" FromRole="Usuario" ToRole="Endereco" />
+    <NavigationProperty Name="Cartao" Relationship="DM_Wink.UsuarioCartao" FromRole="Usuario" ToRole="Cartao" />
+    <NavigationProperty Name="Venda" Relationship="DM_Wink.UsuarioVenda" FromRole="Usuario" ToRole="Venda" />
+    <Property Name="role" Type="DM_Wink.Role" Nullable="false" />
+  </EntityType>
+  <Association Name="UsuarioEndereco">
+    <End Type="DM_Wink.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="DM_Wink.Endereco" Role="Endereco" Multiplicity="*" />
+  </Association>
+  <Association Name="UsuarioCartao">
+    <End Type="DM_Wink.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="DM_Wink.Cartao" Role="Cartao" Multiplicity="*" />
+  </Association>
+  <Association Name="UsuarioVenda">
+    <End Type="DM_Wink.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="DM_Wink.Venda" Role="Venda" Multiplicity="*" />
+  </Association>
+  <EntityType Name="ProdutoVenda">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Venda" Relationship="DM_Wink.VendaProdutoVenda" FromRole="ProdutoVenda" ToRole="Venda" />
+    <NavigationProperty Name="Produto" Relationship="DM_Wink.ProdutoProdutoVenda" FromRole="ProdutoVenda" ToRole="Produto" />
+    <Property Name="qtde" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="VendaProdutoVenda">
+    <End Type="DM_Wink.Venda" Role="Venda" Multiplicity="1" />
+    <End Type="DM_Wink.ProdutoVenda" Role="ProdutoVenda" Multiplicity="*" />
+  </Association>
+  <Association Name="ProdutoProdutoVenda">
+    <End Type="DM_Wink.Produto" Role="Produto" Multiplicity="1" />
+    <End Type="DM_Wink.ProdutoVenda" Role="ProdutoVenda" Multiplicity="*" />
+  </Association>
+  <EnumType Name="Role">
+    <Member Name="Administrador" />
+    <Member Name="Cliente" />
+  </EnumType>
+</Schema>

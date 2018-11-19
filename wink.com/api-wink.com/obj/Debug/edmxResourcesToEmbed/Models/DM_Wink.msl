@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DM_WinkStoreContainer" CdmEntityContainer="DM_WinkContainer">
+    <EntitySetMapping Name="Enderecos">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Endereco)">
+        <MappingFragment StoreEntitySet="Enderecos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="uf" ColumnName="uf" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="rua" ColumnName="rua" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="entrega" ColumnName="entrega" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cartaoes">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Cartao)">
+        <MappingFragment StoreEntitySet="Cartaoes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="cvv" ColumnName="cvv" />
+          <ScalarProperty Name="mesExp" ColumnName="mesExp" />
+          <ScalarProperty Name="anoExp" ColumnName="anoExp" />
+          <ScalarProperty Name="selecionado" ColumnName="selecionado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vendas">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Venda)">
+        <MappingFragment StoreEntitySet="Vendas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="dtVenda" ColumnName="dtVenda" />
+          <ScalarProperty Name="valorVenda" ColumnName="valorVenda" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="codTransacao" ColumnName="codTransacao" />
+          <ScalarProperty Name="linkPgto" ColumnName="linkPgto" />
+          <ScalarProperty Name="formaPgto" ColumnName="formaPgto" />
+          <ScalarProperty Name="hashVenda" ColumnName="hashVenda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Categoria)">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subcategorias">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Subcategoria)">
+        <MappingFragment StoreEntitySet="Subcategorias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fornecedores">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Fornecedor)">
+        <MappingFragment StoreEntitySet="Fornecedores">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produtos">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Produto)">
+        <MappingFragment StoreEntitySet="Produtos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="qtdEstoque" ColumnName="qtdEstoque" />
+          <ScalarProperty Name="descontoPromocao" ColumnName="descontoPromocao" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="promocao" ColumnName="promocao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ofertas">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Oferta)">
+        <MappingFragment StoreEntitySet="Ofertas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="validade" ColumnName="validade" />
+          <ScalarProperty Name="expirado" ColumnName="expirado" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProdutosOfertas">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.ProdutoOferta)">
+        <MappingFragment StoreEntitySet="ProdutosOfertas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="qtd" ColumnName="qtd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Usuario)">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="dtNasc" ColumnName="dtNasc" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProdutosVendas">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.ProdutoVenda)">
+        <MappingFragment StoreEntitySet="ProdutosVendas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="qtde" ColumnName="qtde" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Categoriasubcategoria" TypeName="DM_Wink.Categoriasubcategoria" StoreEntitySet="Subcategorias">
+      <EndProperty Name="Categoria">
+        <ScalarProperty Name="Id" ColumnName="Categoria_Id" />
+      </EndProperty>
+      <EndProperty Name="subcategoria">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FornecedorProduto" TypeName="DM_Wink.FornecedorProduto" StoreEntitySet="Produtos">
+      <EndProperty Name="Fornecedor">
+        <ScalarProperty Name="Id" ColumnName="Fornecedor_Id" />
+      </EndProperty>
+      <EndProperty Name="Produto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SubcategoriaProduto" TypeName="DM_Wink.SubcategoriaProduto" StoreEntitySet="Produtos">
+      <EndProperty Name="Subcategoria">
+        <ScalarProperty Name="Id" ColumnName="Subcategoria_Id" />
+      </EndProperty>
+      <EndProperty Name="Produto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProdutoProdutoOferta" TypeName="DM_Wink.ProdutoProdutoOferta" StoreEntitySet="ProdutosOfertas">
+      <EndProperty Name="Produto">
+        <ScalarProperty Name="Id" ColumnName="Produto_Id" />
+      </EndProperty>
+      <EndProperty Name="ProdutoOferta">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OfertaProdutoOferta" TypeName="DM_Wink.OfertaProdutoOferta" StoreEntitySet="ProdutosOfertas">
+      <EndProperty Name="Oferta">
+        <ScalarProperty Name="Id" ColumnName="Oferta_Id" />
+      </EndProperty>
+      <EndProperty Name="ProdutoOferta">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UsuarioEndereco" TypeName="DM_Wink.UsuarioEndereco" StoreEntitySet="Enderecos">
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
+      </EndProperty>
+      <EndProperty Name="Endereco">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UsuarioCartao" TypeName="DM_Wink.UsuarioCartao" StoreEntitySet="Cartaoes">
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
+      </EndProperty>
+      <EndProperty Name="Cartao">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UsuarioVenda" TypeName="DM_Wink.UsuarioVenda" StoreEntitySet="Vendas">
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
+      </EndProperty>
+      <EndProperty Name="Venda">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VendaProdutoVenda" TypeName="DM_Wink.VendaProdutoVenda" StoreEntitySet="ProdutosVendas">
+      <EndProperty Name="Venda">
+        <ScalarProperty Name="Id" ColumnName="Venda_Id" />
+      </EndProperty>
+      <EndProperty Name="ProdutoVenda">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ProdutoProdutoVenda" TypeName="DM_Wink.ProdutoProdutoVenda" StoreEntitySet="ProdutosVendas">
+      <EndProperty Name="Produto">
+        <ScalarProperty Name="Id" ColumnName="Produto_Id" />
+      </EndProperty>
+      <EndProperty Name="ProdutoVenda">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
