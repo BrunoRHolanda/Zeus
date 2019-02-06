@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DM_Wink" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="DM_WinkContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cliente" EntityType="DM_Wink.Cliente" />
+    <EntitySet Name="Conta" EntityType="DM_Wink.Conta" />
+    <EntitySet Name="Movimentacao" EntityType="DM_Wink.Movimentacao" />
+    <AssociationSet Name="ContaMovimentacao" Association="DM_Wink.ContaMovimentacao">
+      <End Role="Conta" EntitySet="Conta" />
+      <End Role="Movimentacao" EntitySet="Movimentacao" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteConta" Association="DM_Wink.ClienteConta">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Conta" EntitySet="Conta" />
+    </AssociationSet>
+  </EntityContainer>
+  <EnumType Name="Role">
+    <Member Name="Administrador" />
+    <Member Name="Cliente" />
+  </EnumType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Senha" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="255" />
+    <Property Name="TipoCliente" Type="DM_Wink.TipoCliente" Nullable="false" />
+    <NavigationProperty Name="Conta" Relationship="DM_Wink.ClienteConta" FromRole="Cliente" ToRole="Conta" />
+  </EntityType>
+  <EntityType Name="Conta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Numero" Type="Int64" Nullable="false" />
+    <Property Name="Saldo" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Movimentacao" Relationship="DM_Wink.ContaMovimentacao" FromRole="Conta" ToRole="Movimentacao" />
+    <Property Name="TipoConta" Type="DM_Wink.TipoConta" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="DM_Wink.ClienteConta" FromRole="Conta" ToRole="Cliente" />
+  </EntityType>
+  <EntityType Name="Movimentacao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Valor" Type="Double" Nullable="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TipoMovimento" Type="DM_Wink.TipoMovimento" Nullable="false" />
+    <NavigationProperty Name="Conta" Relationship="DM_Wink.ContaMovimentacao" FromRole="Movimentacao" ToRole="Conta" />
+    <Property Name="Saldo" Type="Double" Nullable="false" />
+  </EntityType>
+  <EnumType Name="TipoMovimento">
+    <Member Name="SAQUE" Value="1" />
+    <Member Name="DEPOSITO" Value="2" />
+    <Member Name="TRANSFERENCIA" Value="3" />
+  </EnumType>
+  <Association Name="ContaMovimentacao">
+    <End Type="DM_Wink.Conta" Role="Conta" Multiplicity="1" />
+    <End Type="DM_Wink.Movimentacao" Role="Movimentacao" Multiplicity="*" />
+  </Association>
+  <EnumType Name="TipoConta">
+    <Member Name="CC" Value="1" />
+    <Member Name="CP" Value="2" />
+  </EnumType>
+  <Association Name="ClienteConta">
+    <End Type="DM_Wink.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="DM_Wink.Conta" Role="Conta" Multiplicity="*" />
+  </Association>
+  <EnumType Name="TipoCliente">
+    <Member Name="PF" Value="1" />
+    <Member Name="PJ" Value="2" />
+  </EnumType>
+  <EntityType Name="ClienteFisico" BaseType="DM_Wink.Cliente">
+    <Property Name="Cpf" Type="String" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="ClienteJuridico" BaseType="DM_Wink.Cliente">
+    <Property Name="Cnpj" Type="String" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ContaCorrente" BaseType="DM_Wink.Conta" />
+  <EntityType Name="ContaPoupanca" BaseType="DM_Wink.Conta" />
+</Schema>

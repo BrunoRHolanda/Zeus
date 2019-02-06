@@ -18,14 +18,19 @@ namespace api_wink.com.Utils.Helpers
             set { this._context = value; }
         }
         
-        public IUsuarioRepository Usuario
+        public IClienteRepository Cliente
         {
-            get { return new UsuarioRepository(this.Context); }
+            get { return new ClienteRepository(Context); }
         }
 
-        public IEnderecoRepository Endereco
+        public IContaRepository Conta
         {
-            get { return new EnderecoRepository(this.Context); }
+            get { return new ContaRepository(Context); }
+        }
+
+        public IMovimentacaoRepository Movimentacao
+        {
+            get { return new MovimentacaoRepository(Context); }
         }
 
         public Repository(Database context)

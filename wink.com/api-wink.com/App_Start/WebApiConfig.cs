@@ -28,7 +28,7 @@ namespace api_wink.com
             var container = new UnityContainer();
 
             // Mapeamento de dependências
-            container.RegisterType<IUsuarioRepository, UsuarioRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IClienteRepository, ClienteRepository>(new HierarchicalLifetimeManager());
 
             // configuração da instância do resolver
             config.DependencyResolver = new UnityResolver(container);

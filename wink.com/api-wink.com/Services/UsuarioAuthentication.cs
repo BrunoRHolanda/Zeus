@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+
 
 using api_wink.com.Repository;
 using api_wink.com.Models;
+using System.Web.Http;
+using System.Net;
+using System.Net.Http;
 
 namespace api_wink.com.Services
 {
     public class UsuarioAuthentication
     {
-        public static Usuario Login(string email, string senha)
+        public static Cliente Login(string login, string senha)
         {
-            IUsuarioRepository usuarioRepository = 
-                new UsuarioRepository(new Utils.Helpers.Database());
+            IClienteRepository clienteRepository = 
+                new ClienteRepository(new Utils.Helpers.Database());
 
-            Usuario usuario = 
-                usuarioRepository.Query(u => u.email.Equals(email) &&
-                    u.senha.Equals(senha)).FirstOrDefault();
+            Cliente cliente =
+                clienteRepository.Query(c => c.Login.Equals(login) &&
+                    c.Senha.Equals(senha)).FirstOrDefault();
 
-            return usuario;
+            return cliente;
         }
     }
 }

@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DM_Wink.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DM_WinkStoreContainer">
+    <EntitySet Name="Cliente" EntityType="DM_Wink.Store.Cliente" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Conta" EntityType="DM_Wink.Store.Conta" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Movimentacao" EntityType="DM_Wink.Store.Movimentacao" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cliente_ClienteFisico" EntityType="DM_Wink.Store.Cliente_ClienteFisico" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cliente_ClienteJuridico" EntityType="DM_Wink.Store.Cliente_ClienteJuridico" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Conta_ContaCorrente" EntityType="DM_Wink.Store.Conta_ContaCorrente" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Conta_ContaPoupanca" EntityType="DM_Wink.Store.Conta_ContaPoupanca" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ContaMovimentacao" Association="DM_Wink.Store.ContaMovimentacao">
+      <End Role="Conta" EntitySet="Conta" />
+      <End Role="Movimentacao" EntitySet="Movimentacao" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteConta" Association="DM_Wink.Store.ClienteConta">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Conta" EntitySet="Conta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClienteFisico_inherits_Cliente" Association="DM_Wink.Store.FK_ClienteFisico_inherits_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="ClienteFisico" EntitySet="Cliente_ClienteFisico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClienteJuridico_inherits_Cliente" Association="DM_Wink.Store.FK_ClienteJuridico_inherits_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="ClienteJuridico" EntitySet="Cliente_ClienteJuridico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContaCorrente_inherits_Conta" Association="DM_Wink.Store.FK_ContaCorrente_inherits_Conta">
+      <End Role="Conta" EntitySet="Conta" />
+      <End Role="ContaCorrente" EntitySet="Conta_ContaCorrente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContaPoupanca_inherits_Conta" Association="DM_Wink.Store.FK_ContaPoupanca_inherits_Conta">
+      <End Role="Conta" EntitySet="Conta" />
+      <End Role="ContaPoupanca" EntitySet="Conta_ContaPoupanca" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Senha" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="TipoCliente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="bigint" Nullable="false" />
+    <Property Name="Saldo" Type="float" Nullable="false" />
+    <Property Name="TipoConta" Type="int" Nullable="false" />
+    <Property Name="Cliente_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movimentacao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Valor" Type="float" Nullable="false" />
+    <Property Name="Data" Type="datetime" Nullable="false" />
+    <Property Name="TipoMovimento" Type="int" Nullable="false" />
+    <Property Name="Saldo" Type="float" Nullable="false" />
+    <Property Name="Conta_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente_ClienteFisico">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Cpf" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente_ClienteJuridico">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Cnpj" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conta_ContaCorrente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conta_ContaPoupanca">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ContaMovimentacao">
+    <End Role="Conta" Type="DM_Wink.Store.Conta" Multiplicity="1" />
+    <End Role="Movimentacao" Type="DM_Wink.Store.Movimentacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Movimentacao">
+        <PropertyRef Name="Conta_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteConta">
+    <End Role="Cliente" Type="DM_Wink.Store.Cliente" Multiplicity="1" />
+    <End Role="Conta" Type="DM_Wink.Store.Conta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Conta">
+        <PropertyRef Name="Cliente_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClienteFisico_inherits_Cliente">
+    <End Role="Cliente" Type="DM_Wink.Store.Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ClienteFisico" Type="DM_Wink.Store.Cliente_ClienteFisico" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClienteFisico">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClienteJuridico_inherits_Cliente">
+    <End Role="Cliente" Type="DM_Wink.Store.Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ClienteJuridico" Type="DM_Wink.Store.Cliente_ClienteJuridico" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClienteJuridico">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContaCorrente_inherits_Conta">
+    <End Role="Conta" Type="DM_Wink.Store.Conta" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ContaCorrente" Type="DM_Wink.Store.Conta_ContaCorrente" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Conta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContaCorrente">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContaPoupanca_inherits_Conta">
+    <End Role="Conta" Type="DM_Wink.Store.Conta" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ContaPoupanca" Type="DM_Wink.Store.Conta_ContaPoupanca" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Conta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContaPoupanca">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DM_Wink" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DM_WinkContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="DM_Wink.Cliente" />
+          <EntitySet Name="Conta" EntityType="DM_Wink.Conta" />
+          <EntitySet Name="Movimentacao" EntityType="DM_Wink.Movimentacao" />
+          <AssociationSet Name="ContaMovimentacao" Association="DM_Wink.ContaMovimentacao">
+            <End Role="Conta" EntitySet="Conta" />
+            <End Role="Movimentacao" EntitySet="Movimentacao" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteConta" Association="DM_Wink.ClienteConta">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Conta" EntitySet="Conta" />
+          </AssociationSet>
+          </EntityContainer>
+        <EnumType Name="Role">
+          <Member Name="Administrador" />
+          <Member Name="Cliente" />
+        </EnumType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Senha" Type="String" Nullable="false" Unicode="true" FixedLength="false" MaxLength="255" />
+          <Property Name="TipoCliente" Type="DM_Wink.TipoCliente" Nullable="false" />
+          <NavigationProperty Name="Conta" Relationship="DM_Wink.ClienteConta" FromRole="Cliente" ToRole="Conta" />
+        </EntityType>
+        <EntityType Name="Conta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int64" Nullable="false" />
+          <Property Name="Saldo" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Movimentacao" Relationship="DM_Wink.ContaMovimentacao" FromRole="Conta" ToRole="Movimentacao" />
+          <Property Name="TipoConta" Type="DM_Wink.TipoConta" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="DM_Wink.ClienteConta" FromRole="Conta" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="Movimentacao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Valor" Type="Double" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TipoMovimento" Type="DM_Wink.TipoMovimento" Nullable="false" />
+          <NavigationProperty Name="Conta" Relationship="DM_Wink.ContaMovimentacao" FromRole="Movimentacao" ToRole="Conta" />
+          <Property Name="Saldo" Type="Double" Nullable="false" />
+        </EntityType>
+        <EnumType Name="TipoMovimento">
+          <Member Name="SAQUE" Value="1" />
+          <Member Name="DEPOSITO" Value="2" />
+          <Member Name="TRANSFERENCIA" Value="3" />
+        </EnumType>
+        <Association Name="ContaMovimentacao">
+          <End Type="DM_Wink.Conta" Role="Conta" Multiplicity="1" />
+          <End Type="DM_Wink.Movimentacao" Role="Movimentacao" Multiplicity="*" />
+        </Association>
+        <EnumType Name="TipoConta">
+          <Member Name="CC" Value="1" />
+          <Member Name="CP" Value="2" />
+        </EnumType>
+        <Association Name="ClienteConta">
+          <End Type="DM_Wink.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="DM_Wink.Conta" Role="Conta" Multiplicity="*" />
+        </Association>
+        <EnumType Name="TipoCliente">
+          <Member Name="PF" Value="1" />
+          <Member Name="PJ" Value="2" />
+        </EnumType>
+        <EntityType Name="ClienteFisico" BaseType="DM_Wink.Cliente">
+          <Property Name="Cpf" Type="String" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ClienteJuridico" BaseType="DM_Wink.Cliente">
+          <Property Name="Cnpj" Type="String" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ContaCorrente" BaseType="DM_Wink.Conta">
+          </EntityType>
+        <EntityType Name="ContaPoupanca" BaseType="DM_Wink.Conta">
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DM_WinkStoreContainer" CdmEntityContainer="DM_WinkContainer">
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Cliente)">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="TipoCliente" ColumnName="TipoCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.ClienteFisico)">
+        <MappingFragment StoreEntitySet="Cliente_ClienteFisico">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.ClienteJuridico)">
+        <MappingFragment StoreEntitySet="Cliente_ClienteJuridico">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conta">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Conta)">
+        <MappingFragment StoreEntitySet="Conta">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="TipoConta" ColumnName="TipoConta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.ContaCorrente)">
+        <MappingFragment StoreEntitySet="Conta_ContaCorrente">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.ContaPoupanca)">
+        <MappingFragment StoreEntitySet="Conta_ContaPoupanca">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movimentacao">
+      <EntityTypeMapping TypeName="IsTypeOf(DM_Wink.Movimentacao)">
+        <MappingFragment StoreEntitySet="Movimentacao">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="TipoMovimento" ColumnName="TipoMovimento" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ContaMovimentacao" TypeName="DM_Wink.ContaMovimentacao" StoreEntitySet="Movimentacao">
+      <EndProperty Name="Conta">
+        <ScalarProperty Name="Id" ColumnName="Conta_Id" />
+      </EndProperty>
+      <EndProperty Name="Movimentacao">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClienteConta" TypeName="DM_Wink.ClienteConta" StoreEntitySet="Conta">
+      <EndProperty Name="Cliente">
+        <ScalarProperty Name="Id" ColumnName="Cliente_Id" />
+      </EndProperty>
+      <EndProperty Name="Conta">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

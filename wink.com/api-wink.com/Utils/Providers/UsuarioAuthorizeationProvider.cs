@@ -15,18 +15,20 @@ namespace api_wink.com.Utils.Providers
         }
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            Usuario usuario = UsuarioAuthentication.Login(context.UserName, context.Password);
-            if (usuario != null)
+            Cliente cliente = UsuarioAuthentication.Login(context.UserName, context.Password);
+            if (cliente != null)
             {
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 identity.AddClaim(new Claim("sub", context.UserName));
-                identity.AddClaim(new Claim(ClaimTypes.Name, usuario.email));
-                identity.AddClaim(new Claim(ClaimTypes.Role, usuario.role.ToString()));
+                identity.AddClaim(new Claim(ClaimTypes.Name, cliente.Login));
+                // identity.AddClaim(new Claim(ClaimTypes.Role, cliente.role.ToString()));
                 context.Validated(identity);
             }
             else
             {
-                context.SetError("acesso inválido", "As credenciais do usuário não conferem....");
+                context.SetError("acesso inválido", "As credenciais do usuário não conferem.... " +
+                    "login: " + context.UserName + " " +
+                    "senha: " + context.Password);
                 return;
             }
         }
