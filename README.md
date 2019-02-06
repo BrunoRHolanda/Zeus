@@ -6,7 +6,7 @@
 
 1.  **POST**: api/conta/add
 2.  **PUT**: api/conta/:id/sacar/:valor
-3.  **PUT**: api/conta/:id/depositar/:valor
+3.  **PUT**: api/conta/:id/depositar/:valor 
 4.  **PUT**: api/conta/:sacado/transferir/:beneficiado/:valor
 5.  **GET**: api/conta/1/extrato
 
