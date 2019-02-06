@@ -1,0 +1,20 @@
+#titulo1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 50px;
+  width: 400px;
+  height: 90px;
+}
+
+#form-cadastro {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}

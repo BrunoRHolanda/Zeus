@@ -1,0 +1,49 @@
+<mat-grid-list cols="2" rowHeight="1:1">
+  <mat-grid-tile>
+    <button mat-fab color="warn" id="titulo1">Zeus</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-title>Cadastro de Cliente</mat-card-title>
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+        <mat-divider [inset]="true"></mat-divider>
+        <h3>Dados do cliente</h3>
+        <form id="form-cadastro">
+          <mat-form-field class="form-control">
+            <input matInput placeholder="Nome" value="">
+          </mat-form-field>
+          <mat-slide-toggle color="primary">
+            Pessoa jurídica
+          </mat-slide-toggle>
+          <mat-form-field class="form-control">
+            <input matInput placeholder="CPF/CNPJ" value="">
+          </mat-form-field>
+          <mat-form-field class="form-control">
+            <input matInput placeholder="Login" value="">
+          </mat-form-field>
+          <mat-form-field class="form-control">
+            <input matInput placeholder="Senha" value="" type="password">
+          </mat-form-field>
+          <mat-divider [inset]="true"></mat-divider>
+          <h3>Dados da conta</h3>
+          <mat-radio-group>
+            <mat-radio-button value="1" color="primary">Conta Corrente</mat-radio-button>
+            <mat-radio-button value="2" color="primary">Conta Poupaça</mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field class="form-control">
+            <input matInput placeholder="Deposito" value="" type="number">
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button>Entrar</button>
+        <button mat-raised-button color="primary">Criar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
